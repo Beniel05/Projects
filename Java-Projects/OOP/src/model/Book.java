@@ -19,6 +19,13 @@ public class Book {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", title=" + title + ", author=" + author + 
+				", genre=" + genre + ", pages=" + pages + ", price=" + price +
+				", status=" + status + "]";
+	}
+
 	public int getBookId() {
 		return bookId;
 	}

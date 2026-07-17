@@ -15,6 +15,14 @@ public class Member {
 		this.address = address;
 	}
 	
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", name=" + name + ", age=" + age +
+				", contact=" + contact + ", address=" + address + "]";
+	}
+	
+	
+
 	public int getMemberId() {
 		return memberId;
 	}
@@ -45,5 +53,7 @@ public class Member {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	
 	
 }

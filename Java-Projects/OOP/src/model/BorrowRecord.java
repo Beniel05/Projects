@@ -17,6 +17,13 @@ public class BorrowRecord {
 		this.returnDate = returnDate;
 	}
 
+	@Override
+	public String toString() {
+		return "BorrowRecord [recordId=" + recordId + ", member=" + member + 
+				", book=" + book + ", borrowDate=" + borrowDate + 
+				", returnDate=" + returnDate + "]";
+	}
+
 	public int getRecordId() {
 		return recordId;
 	}
