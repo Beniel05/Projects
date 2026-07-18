@@ -17,11 +17,25 @@ public class Main {
 		library.addBook(book1);
 		library.addBook(book2);
 		
-		Member member1 = new Member(1, "John", 23, "123456789", "No.1, West Cross St, USA");
-		
+//		Member member1 = new Member(1, "John", 23, "123456789", "No.1, West Cross St, USA");
 		
 		library.viewAllBooks();
-		library.viewAllMembers();
+//		library.viewAllMembers();
 		
+		
+		// For testing purpose;
+		Book book = library.findBookById(999);
+		if(book != null) {
+			System.out.println(book);
+		} else {
+			System.out.println("Book not found.");
+		}
+		
+		Member member = library.findMemberById(1);
+		if(member != null) {
+			System.out.println(member);
+		} else {
+			System.out.println("Member not found.");
+		}
 	}
 }

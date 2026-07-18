@@ -46,4 +46,22 @@ public class Library {
 		}
 	}
 	
+	public Book findBookById(int bookId) {
+		for(Book book : books) {
+			if(bookId == book.getBookId()) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	public Member findMemberById(int memberId) {
+		for(Member member : members) {
+			if(memberId == member.getMemberId()) {
+				return member;
+			}
+		}
+		return null;
+	}
+	
 }
