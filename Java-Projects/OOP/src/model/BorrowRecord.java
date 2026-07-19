@@ -1,7 +1,11 @@
 package model;
 
 public class BorrowRecord {
-	private int recordId;
+	// Shared counter for all BorrowRecord objects
+    private static int nextRecordId = 1001;
+
+    // Each object's own ID
+    private int recordId;
 	
 	private Member member;
 	private Book book;
@@ -9,8 +13,10 @@ public class BorrowRecord {
 	private String borrowDate;
 	private String returnDate;
 	
-	public BorrowRecord(int recordId, Member member, Book book, String borrowDate, String returnDate) {
-		this.recordId = recordId;
+	public BorrowRecord(Member member, Book book, String borrowDate, String returnDate) {
+		
+		this.recordId = nextRecordId++;
+		
 		this.member = member;
 		this.book = book;
 		this.borrowDate = borrowDate;
@@ -28,9 +34,10 @@ public class BorrowRecord {
 		return recordId;
 	}
 
-	public void setRecordId(int recordId) {
-		this.recordId = recordId;
-	}
+	// We shouldn't let someone change the recordId from outside!
+//	public void setRecordId(int recordId) {
+//		this.recordId = recordId;
+//	}
 
 	public Member getMember() {
 		return member;
