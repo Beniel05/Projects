@@ -1,7 +1,6 @@
 package service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import model.Book;
 import model.BookStatus;
@@ -87,7 +86,7 @@ public class Library {
 		book.setStatus(BookStatus.BORROWED);
 		
 		// Add the record to the records list
-		BorrowRecord borrowRecord = new BorrowRecord(member, book, "19-07-2026", "29-07-2026");
+		BorrowRecord borrowRecord = new BorrowRecord(member, book, "19-07-2026", null);
 		records.add(borrowRecord);
 		
 		// Send a confirmation String.
@@ -107,6 +106,57 @@ public class Library {
 			}
 		}
 		return null;
+	}
+	
+	public String returnBook(int recordId) {
+		
+		// Getting the record to follow DRY principle
+		BorrowRecord record = getRecordById(recordId);
+
+		if(record == null) { 
+			// If record is not exist - No borrow happened
+			return "No such record";
+		}
+		
+		// Getting book obj after the above check
+		Book book = record.getBook();
+		
+		if(book.getStatus() == BookStatus.AVAILABLE) {
+			return "Book cannot be returned.";
+		}
+		
+		// If BookStatus is BORROWED;
+		book.setStatus(BookStatus.AVAILABLE);
+		record.setReturnDate("29-7-26"); // hard Coded for now (practicing)
+		// After learning about date and time API - i'll update this.
+		
+		return "Returned Successfully";
+	}
+	
+	public void viewBooksBorrowedByMember(int memberId) {
+	
+		Member member = findMemberById(memberId);
+		
+		if(member == null) {
+			System.out.println("There is no registered Member with that ID.");
+			return;
+		}
+		
+		boolean hasBorrowedBooks = false;
+		
+		for(BorrowRecord record : records) {
+			if(record.getMember() == member) {
+				if(record.getBook().getStatus() == BookStatus.BORROWED) {
+					System.out.println(record);
+					hasBorrowedBooks = true;
+				}
+			}
+		}
+		
+		if(!hasBorrowedBooks) {
+			System.out.println("The user doesn't have any book with them.");
+		}
+	 
 	}
 	
 }

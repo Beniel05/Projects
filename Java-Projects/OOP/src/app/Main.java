@@ -59,5 +59,35 @@ public class Main {
 		
 		System.out.println("\n=============== viewAllBorrowRecords() ===============\n");
 		library.viewAllBorrowRecords();
+	
+		System.out.println("\n=============== returnBook() ===============\n");
+		
+		library.viewAllBorrowRecords();
+		// BookStatus BORROWED, returnDate is null (not returned).
+		
+		String returnResult1 = library.returnBook(1001);
+		// Trying to return the returned Book.
+		
+		library.viewAllBorrowRecords();
+		// BookStatus changed to AVAILABLE again, returnDate has set (hard coded).
+		
+		String returnResult2 = library.returnBook(1001);
+		// Trying to return - When no borrow happened (no records).
+		String returnResult3 = library.returnBook(999);
+		System.out.println(returnResult1);
+		System.out.println(returnResult2);
+		System.out.println(returnResult3);
+		
+		
+		System.out.println("\n=============== viewBooksBorrowedByMember() ===============\n");
+		// Getting details of what are all the books - currently the member having.
+		library.viewBooksBorrowedByMember(1);
+		
+		library.borrowBook(101, 2); // Member2 have borrowed the book-101.
+		library.viewBooksBorrowedByMember(2);
+		
+		// Passing Invalid MemberId;
+		library.viewBooksBorrowedByMember(-1);
+		
 	}
 }
