@@ -437,4 +437,84 @@ public class Library {
 		return "Updated Member Age Successfully";
 	}
 	
+	public void viewAvailableBooks() {
+		if (books.isEmpty()) {
+		    System.out.println("No books in the library.");
+		    return;
+		}
+		boolean availableBookFound = false;
+		for(Book book : books) {
+			if(book.getStatus() == BookStatus.AVAILABLE) {
+				System.out.println(book);
+				availableBookFound = true;
+			}
+		}
+		if(!availableBookFound) {
+			System.out.println("No books are currently available.");
+		}
+	}
+	
+	public void viewBorrowedBooks() {
+		if(books.isEmpty()) {
+			System.out.println("No books in the library.");
+			return;
+		}
+		boolean borrowedBookFound = false;
+		for(Book book : books) {
+			if(book.getStatus() == BookStatus.BORROWED) {				
+				System.out.println(book);
+				borrowedBookFound = true;
+			}
+		}
+		if(!borrowedBookFound) {
+			System.out.println("No books are currently borrowed.");
+		}
+	}
+	
+	public void countBooks() {
+		System.out.println(books.size());
+	}
+	
+	public void countMembers() {
+		System.out.println(members.size());
+	}
+	
+	public void countBorrowRecords() {
+		System.out.println(records.size());
+	}
+	
+	public void countAvailableBooks() {
+		if(books.isEmpty()) {
+			System.out.println("No books in the library.");
+			return;
+		}
+		int availableBooks = 0;
+		for(Book book : books) {
+			if(book.getStatus() == BookStatus.AVAILABLE) {
+				availableBooks++;
+			}
+		}
+		System.out.println("Total Available Books: " + availableBooks);
+	}
+	
+	public void countBorrowedBooks() {
+		if(books.isEmpty()) {
+			System.out.println("No books in the library.");
+			return;
+		}
+		int borrowedBooks = 0;
+		for(Book book : books) {
+			if(book.getStatus() == BookStatus.BORROWED) {
+				borrowedBooks++;
+			}
+		}
+		System.out.println("Total Borrowed Books: " + borrowedBooks);
+	}
+	
+	public boolean isLibraryEmpty() {
+		if(books.isEmpty() && members.isEmpty() && records.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 }
